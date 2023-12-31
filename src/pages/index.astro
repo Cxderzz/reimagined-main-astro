@@ -1,0 +1,241 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import { webGl } from '../webgl/main.js';
+---
+
+<Layout title="Welcome to Astro.">
+    <div class="webgl"></div>
+    <div class="loading-bg"></div>
+    <main>
+      <nav>
+        <img src="models/reimagined.png" class="mainlogo" />
+        <ul>
+          <li class="active">Home</li>
+          <li>Technology</li>
+          <li>Services</li>
+          <li>Projects</li>
+          <li>About</li>
+        </ul>
+      </nav>
+      <section class="hero-textarea">
+        <h1 id="hero-main-text">
+          Let's <span class="accent">reimagine</span> that dream project.
+        </h1>
+        <p id="hero-sub-text">
+          Innovative technology solutions that prioritize people, catering to
+          the needs of Queensland's communities.
+        </p>
+        <div id="hero-button-list">
+          <button id="hero-button">Tell me more</button>
+          <button id="hero-button-empty">Get a call back &rarr;</button>
+        </div>
+      </section>
+      <div class="stage">
+        <a class="box bounce11" href="#main"> &darr; </a>
+      </div>
+    </main>
+    <section id="main">
+      <div>
+        <h1 class="title">Our Services</h1>
+        <p class="subtitle">
+          We offer a range of services to help you achieve your goals.
+        </p>
+      </div>
+    </section>
+    <!-- <h1 class="title">Give it a spin</h1> -->
+
+	<script src="../webgl/main.js"></script>
+
+</Layout>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+.webgl {
+  position: absolute;
+  z-index: -1;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow-x: hidden;
+  left: 0;
+  top: 0;
+  /* background-image: url("models/bg.png"); */
+}
+.loading-bg {
+  position: absolute;
+  background-image: url("models/bg-2.webp");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  left: 0;
+  top: 0;
+}
+.title {
+  margin-top: 150vh;
+}
+.mainlogo {
+  width: 15.91175rem;
+  height: 2.75rem;
+}
+
+nav {
+  padding-top: 3.5rem;
+  padding-inline: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+li {
+  font-size: 1.125rem;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.active {
+  color: white !important;
+}
+.accent {
+  background: linear-gradient(257deg, #db00ff 38.33%, #8a68eb 90.97%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-textarea {
+  padding-left: 3.5rem;
+  color: white;
+  /* padding-top: 13rem; */
+  display: flex;
+  gap: 0.7rem;
+  flex-direction: column;
+}
+#hero-main-text {
+  color: #fff;
+  font-family: Inter;
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130.523%; /* 6.24063rem */
+  letter-spacing: 0.11956rem;
+  max-width: 45vw;
+}
+
+#hero-sub-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: Inter;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 44vw;
+}
+
+#hero-button-list {
+  display: flex;
+  gap: 1rem;
+}
+
+#hero-button {
+  background: #8a68eb;
+  border-radius: 0.3rem;
+  border: none;
+  padding: 0.7rem 1.7rem;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#hero-button-empty {
+  background: linear-gradient(to left, transparent 50%, #8a68eb 50%) right;
+  background-size: 200%;
+  border: 3px solid #8a68eb;
+  border-radius: 0.3rem;
+  padding: 0.7rem 1.7rem;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+
+#hero-button-empty:hover {
+  background-position: left;
+}
+
+main {
+  display: flex;
+  height: 100vh;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.hero-arrow p {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.hero-arrow {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1.1rem;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.box {
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  margin: 0 auto 0 auto;
+  transform-origin: bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #8a68eb;
+  color: white;
+  font-family: Inter, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.bounce11 {
+  animation-name: bounce;
+  animation-timing-function: linear;
+}
+.bounce11:hover {
+  -moz-animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+</style>
