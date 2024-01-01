@@ -55,8 +55,11 @@ function init() {
     0.25,
     20
   );
-  camera.position.set(-1.5, 0.1, 4);
 
+  camera.position.set(-1.5, 0.1, 4);
+  if (window.innerWidth < 768) {
+    camera.position.set(0, -1, 7);
+  }
   scene = new THREE.Scene();
 
   clock = new THREE.Clock();
