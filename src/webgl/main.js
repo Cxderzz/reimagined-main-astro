@@ -56,9 +56,11 @@ function init() {
     20
   );
 
-  camera.position.set(-1.5, 0.1, 4);
   if (window.innerWidth < 768) {
     camera.position.set(0, -1, 7);
+  } else {
+    camera.position.set(-1.5, 0.1, 4);
+    window.addEventListener("mousemove", onMouseMove, false);
   }
   scene = new THREE.Scene();
 
@@ -186,7 +188,7 @@ function init() {
   // controls.minPolarAngle = Math.PI / 2;
   // controls.maxPolarAngle = Math.PI / 2;
   // controls.update();
-  window.addEventListener("mousemove", onMouseMove, false);
+
   window.addEventListener("resize", onWindowResize, false);
 }
 
