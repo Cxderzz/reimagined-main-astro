@@ -56,12 +56,13 @@ function init() {
     20
   );
 
-  if (window.innerWidth < 768) {
+  if (window.innerWidth <= 768) {
     camera.position.set(0, -1, 7);
   } else {
-    camera.position.set(-1.5, 0.1, 4);
     window.addEventListener("mousemove", onMouseMove, false);
+    camera.position.set(-1.5, 0.1, 4);
   }
+
   scene = new THREE.Scene();
 
   clock = new THREE.Clock();
