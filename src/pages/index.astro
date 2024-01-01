@@ -49,12 +49,16 @@ import Card from '../components/Card.astro';
 
 </Layout>
 
-<style>
+<style is:inline>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -128,7 +132,6 @@ ul {
 }
 #hero-main-text {
   color: #fff;
-  font-family: Inter;
   font-size: 4rem;
   font-style: normal;
   font-weight: 700;
@@ -139,7 +142,6 @@ ul {
 
 #hero-sub-text {
   color: rgba(255, 255, 255, 0.5);
-  font-family: Inter;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 400;
@@ -222,7 +224,6 @@ main {
   border-radius: 50%;
   background-color: #8a68eb;
   color: white;
-  font-family: Inter, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-decoration: none;
   font-size: 1.125rem;
   font-weight: bold;

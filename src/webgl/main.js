@@ -40,11 +40,13 @@ var params = {
   radius: 0,
   exposure: 0.01,
 };
+var loading;
 
 init();
 animate();
 // animate_dos();
 function init() {
+  loading = true;
   container = document.querySelector(".webgl");
   // run mouse enter event listener
   camera = new THREE.PerspectiveCamera(
@@ -89,6 +91,7 @@ function init() {
       // }
       // // gltf.scene.rotation.x += 0.001;
     });
+    loading = false;
   });
   // .setPath("models")
 
@@ -252,6 +255,7 @@ function onMouseEnterHandler() {
 //
 
 function animate() {
+  console.log(loading);
   // controls.update();
   requestAnimationFrame(animate);
 
@@ -264,11 +268,13 @@ function animate() {
   // } else {
   //   console.log("you failed");
   // }
-  render();
+  if (!loading) {
+    portalObject.rotation.x += 0.001;
+    render();
+  }
   var delta = clock.getDelta();
 
   if (mixer) mixer.update(delta);
-  portalObject.rotation.x += 0.001;
 }
 
 function render() {
