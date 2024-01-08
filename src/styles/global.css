@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;&display=swap");
+
+:root {
+  --background-dark: linear-gradient(
+    302.45deg,
+    #000026 7.04%,
+    rgba(0, 0, 38, 0.96) 50.78%
+  );
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.button {
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  padding: 0.3rem;
+  border-radius: 0.28125rem;
+  display: inline-block;
+  font-size: 14.4px;
+  width: 144px;
+}
+
+.button-solid {
+  background: #8a68eb;
+}
+.button-trans {
+  border: 2px solid #8a68eb;
+}

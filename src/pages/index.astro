@@ -1,14 +1,78 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Pillar from '../components/Pillar.astro';
 
+interface Card {
+  amount: string;
+  amountString: string;
+  title: string;
+  body: string;
+  imgSource: string;
+  cta: string;
+}
+
+const contractPillar: Card = {
+  amount: "create",
+  amountString: "",
+  title: "Build your dream website",
+  imgSource: "url(../spanner.png)",
+  body: "Using tried and trusted technologies, we will turn your dream website into reality. With best practice and SEO at heart, you’re covered for anything.",
+  cta: "Get started",
+};
+
+const culturePillar: Card = {
+  amount: "innovate",
+  amountString: "",
+  title: "Turning old into new",
+  body: "Is your current website slow? Don’t feel like you need a new one just yet? Perfect! We will rapidly upgrade your website to 2023 standards.",
+  imgSource: "url(../bulb.png)",
+  cta: "Upgrade now",
+};
+
+const innovatePillar: Card = {
+  amount: "maintain",
+  amountString: "",
+  title: "Sit back and relax",
+  body: "Time and time again - we see business’ spending far too much time on technology problems. Upgrade your technology solution and let Reimagined handle the hard work.",
+  imgSource: "url(../flame.png)",
+  cta: "Learn more",
+};
 ---
 
 <Layout title="Welcome to Astro.">
     <div class="webgl"></div>
     <div class="loading-bg"></div>
-    <main>
+              <header>
+      <img class="mainlogo" src="models/reimagined.png" alt="Reimagined logo" />
+      <button
+        class="mobile-nav-toggle"
+        aria-controls="primary-navigation"
+        aria-expanded="false"
+      >
+        <svg fill="#ffffff" class="hamburger" viewBox="0 0 100 100" width="40">
+          <rect class="line top" width="80" height="3" x="10" y="25"> </rect>
+          <rect class="line middle" width="80" height="3" x="10" y="45"> </rect>
+          <rect class="line bottom" width="80" height="3" x="10" y="65"> </rect>
+        </svg>
+      </button> 
+
       <nav>
+        <ul
+          id="primary-navigation"
+          data-visible="false"
+          class="primary-navigation"
+        >
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Technology</a></li>
+          <li><a href="#">Contractors</a></li>
+          <li><a href="#">Teams</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- <nav>
         <img src="models/reimagined.png" class="mainlogo" />
         <ul>
           <li class="active">Home</li>
@@ -17,7 +81,8 @@ import Card from '../components/Card.astro';
           <li>Projects</li>
           <li>About</li>
         </ul>
-      </nav>
+      </nav> -->
+      <div class="h-[110px]"></div>
       <section class="hero-textarea">
         <h1 id="hero-main-text">
           Let's <span class="accent">reimagine</span> that dream project.
@@ -43,6 +108,39 @@ import Card from '../components/Card.astro';
         </p>
       </div>
     </section>
+    <section class="pillars">
+      <h3 class="pillars-title">
+        Why choose <span class="text-gradient">Reimagined?</span>
+      </h3>
+        <ul role="list">
+          <Pillar
+            amount={contractPillar.amount}
+            amountString={contractPillar.amountString}
+            title={contractPillar.title}
+            body={contractPillar.body}
+            imgSource={contractPillar.imgSource}
+            cta={contractPillar.cta}
+          />
+          <Pillar
+            amount={culturePillar.amount}
+            amountString={culturePillar.amountString}
+            title={culturePillar.title}
+            body={culturePillar.body}
+            imgSource={culturePillar.imgSource}
+            cta={culturePillar.cta}
+          />
+
+          <Pillar
+            amount={innovatePillar.amount}
+            amountString={innovatePillar.amountString}
+            title={innovatePillar.title}
+            body={innovatePillar.body}
+            imgSource={innovatePillar.imgSource}
+            cta={innovatePillar.cta}
+          />
+        </ul>
+        </section>
+
     <!-- <h1 class="title">Give it a spin</h1> -->
 
 	<script src="../webgl/main.js"></script>
@@ -53,7 +151,11 @@ import Card from '../components/Card.astro';
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-
+  ul {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
 * {
   margin: 0;
   padding: 0;
@@ -66,6 +168,34 @@ body,
 html {
   overflow-x: hidden;
 }
+
+  .primary-navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .mobile-nav-toggle {
+    display: none;
+  }
+  header {
+    position: fixed;
+    top: 0px;
+    width: calc(100%);
+    top: 0px;
+    padding-top: 33px;
+    z-index: 89;
+    background: transparent;
+    left: 0;
+    padding-inline: 33px;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
 .webgl {
   position: absolute;
@@ -95,18 +225,15 @@ html {
   height: 2.75rem;
 }
 
-nav {
-  padding-top: 3.5rem;
-  padding-inline: 3.5rem;
-  display: flex;
-  justify-content: space-between;
-}
+
 li {
   font-size: 1.125rem;
 }
 
-ul {
+nav ul {
   display: flex;
+  flex-direction: row;
+
   list-style: none;
   align-items: center;
   gap: 1rem;
@@ -241,6 +368,31 @@ main {
 
 /* media tag for small devices */
 @media (max-width: 768px) {
+
+    .primary-navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .mobile-nav-toggle {
+    display: none;
+  }
+  header {
+    position: fixed;
+    top: 0px;
+    width: calc(100%);
+    top: 0px;
+    padding-top: 33px;
+    z-index: 89;
+    background: transparent;
+    left: 0;
+    padding-inline: 33px;
+    padding-bottom: 2rem;
+  }
   main, .webgl, .loading-bg {
     height: 89vh;
   }
@@ -249,7 +401,11 @@ main {
     height: 1.75rem;
   }
   nav ul {
-    display: none;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  nav ul li a {
+    font-size: 1.125rem;
   }
   #hero-main-text {
     font-size: 2.5rem;
@@ -284,6 +440,188 @@ main {
   .stage {
     display: none;
   }
-}
+ @media (max-width: 60rem) {
+    .primary-navigation {
+      position: fixed;
+      inset: 0 0 0 20%;
+      padding: min(20vh, 10rem) 2em;
+      background: hsl(240 100% 7% / 0.99);
+      transform: translateX(100%);
+      transition: transform 350ms ease-in-out;
+      z-index: 99;
+      -webkit-backdrop-filter: blur(1rem);
+    }
 
+    .mobile-nav-toggle {
+      display: block;
+      position: absolute;
+      z-index: 999;
+      background: none;
+      border: none;
+      top: 2rem;
+      right: 2rem;
+    }
+    .primary-navigation[data-visible="true"] {
+      transform: translateX(0%);
+    }
+    header {
+      position: fixed;
+      top: 0px;
+      width: calc(100%);
+      top: 0px;
+      padding-top: 33px;
+      z-index: 89;
+      background: transparent;
+      left: 0;
+      padding-inline: 33px;
+      padding-bottom: 2rem;
+    }
+    .hero::before {
+      content: "";
+      display: block;
+      height: 50px;
+      position: static;
+    }
+  }
+  @supports (rotate: -45deg) {
+    @media (max-width: 60rem) {
+      .mobile-nav-toggle .line {
+        transition: y 300ms ease-in 300ms, transform 300ms ease-in,
+          opacity 0ms 300ms;
+        transform-origin: center;
+      }
+
+      .mobile-nav-toggle[aria-expanded="true"] .line {
+        transition: y 300ms ease-in, transform 300ms ease-in 300ms,
+          opacity 0ms 300ms;
+      }
+
+      .mobile-nav-toggle[aria-expanded="true"] :is(.top, .bottom) {
+        y: 45;
+      }
+
+      .mobile-nav-toggle[aria-expanded="true"] .top {
+        transform: rotate(45deg);
+      }
+
+      .mobile-nav-toggle[aria-expanded="true"] .middle {
+        opacity: 0;
+      }
+
+      .mobile-nav-toggle[aria-expanded="true"] .bottom {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .primary-navigation {
+    background: hsl(240 100% 7% / 0.9);
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+  }
+}@media (max-width: 60rem) {
+    .primary-navigation[data-visible="false"] {
+      position: fixed;
+      inset: 0 0 0 20%;
+      padding: min(20vh, 10rem) 2em;
+      background: hsl(240 100% 7% / 0.99);
+      transform: translateX(100%);
+      transition: transform 350ms ease-in-out;
+      z-index: 99;
+      -webkit-backdrop-filter: blur(1rem);
+
+    }
+
+    .mobile-nav-toggle {
+      display: block;
+      position: absolute;
+      z-index: 999;
+      background: none;
+      border: none;
+      top: 2rem;
+      right: 2rem;
+    }
+    .primary-navigation[data-visible="true"] {
+      transform: translateX(0%);
+
+    }
+    header {
+      position: fixed;
+      top: 0px;
+      width: calc(100%);
+      top: 0px;
+      padding-top: 33px;
+      z-index: 89;
+      background: transparent;
+      left: 0;
+      padding-inline: 33px;
+      padding-bottom: 2rem;
+    }
+    .hero::before {
+      content: "";
+      display: block;
+      height: 50px;
+      position: static;
+    }
+  }
 </style>
+<script>
+  const primaryNav = document.querySelector(".primary-navigation");
+  const navToggle = document.querySelector(".mobile-nav-toggle");
+  navToggle.addEventListener("click", () => {
+    const visibility = primaryNav.getAttribute("data-visible");
+
+    if (visibility === "false") {
+      primaryNav.setAttribute("data-visible", "true");
+      navToggle.setAttribute("aria-expanded", "true");
+    } else {
+      primaryNav.setAttribute("data-visible", "false");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  var body = document.getElementsByTagName("body")[0] as HTMLElement;
+  var header = document.getElementsByTagName("header")[0] as HTMLElement;
+
+  // create a function that will only activate if a media query is below 30em and ensure it updates on dynamic size changes
+  // var mediaQuery = window.matchMedia("(max-width: 35em)");
+  // function handleScroll() {
+  //   var scroll = window.scrollY as number;
+  //   if (scroll <= 1) {
+  //     header.style.backgroundColor = "";
+  //     header.style.borderBottom = "";
+  //   } else {
+  //     // yellow
+  //     header.style.backgroundColor = "hsl(240 100% 7% / 1)";
+  //     header.style.borderBottom = "1px solid #3C3C3C";
+  //     header.style.transition = "all 0.15s ease";
+  //   }
+  // }
+
+  // function handleMediaQueryChange(mediaQuery: any) {
+  //   if (mediaQuery.matches) {
+  //     // if the media query is below 30em, add the scroll event listener
+  //     window.addEventListener("scroll", handleScroll);
+  //   } else {
+  //     // otherwise, remove it
+  //     window.removeEventListener("scroll", handleScroll);
+  //   }
+  // }
+  // mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+  // handleMediaQueryChange(mediaQuery);
+  // create the handleScroll function to do the same thing as the window.onscroll below
+
+  // trigger this function every time the user scrolls
+  window.onscroll = function (event) {
+    var scroll = window.scrollY as number;
+    if (scroll <= 1) {
+      header.style.backgroundColor = "";
+      header.style.borderBottom = "";
+    } else {
+      // yellow
+      header.style.backgroundColor = "hsl(240 100% 7% / 1)";
+      header.style.borderBottom = "1px solid #3C3C3C";
+      header.style.transition = "all 0.15s ease";
+    }
+  };
+</script>

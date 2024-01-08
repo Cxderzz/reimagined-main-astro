@@ -1,0 +1,91 @@
+---
+export interface Props {
+  amount: string;
+  amountString: string;
+  title: string;
+  body: string;
+  imgSource: string;
+  cta: string;
+}
+import "../styles/global.css/";
+const { amount, amountString, title, body, imgSource, cta } = Astro.props;
+---
+
+<li>
+  <div class="top-wrapper">
+    <p class="amount">{amount}</p>
+    <p class="amountString">{amountString}</p>
+  </div>
+  <div class="bottom-wrapper">
+    <h2 class="title">{title}</h2>
+    <p class="body">{body}</p>
+    <a class="button button-trans full-width">{cta} &rarr;</a>
+  </div>
+</li>
+
+<style define:vars={{ imgSource }}>
+  li {
+    list-style: none;
+    position: relative;
+    z-index: 3;
+  }
+  li::before {
+    content: var(--imgSource);
+    scale: 0.9;
+    top: -15px;
+    opacity: 0.05;
+    position: absolute;
+    right: 10px;
+
+    z-index: 2;
+  }
+  a {
+    margin-top: 20px;
+  }
+  .top-wrapper {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .bottom-wrapper {
+    border-top: 2.6px solid #8a68eb;
+    margin-top: 15px;
+    padding-top: 10px;
+  }
+  .amount,
+  .title {
+    color: white;
+  }
+  .amountString,
+  .body {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .amount {
+    font-weight: 900;
+    font-size: 48.6px;
+  }
+  .amountString {
+    word-spacing: 9999rem;
+    margin-left: 0.3rem;
+    font-weight: 400;
+    line-height: 19px;
+  }
+
+  .amountString ~ .amountString {
+    word-spacing: unset;
+    display: table-caption;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 21.6px;
+    line-height: 130%;
+  }
+
+  .body {
+    line-height: 130%;
+    font-size: 14.58px;
+    font-weight: 400;
+  }
+  .full-width {
+    width: 100%;
+  }
+</style>
