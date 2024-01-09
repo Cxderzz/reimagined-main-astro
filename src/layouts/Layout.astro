@@ -31,10 +31,12 @@ const { title } = Astro.props;
 			rgb(var(--accent-light)) 30%,
 			white 60%
 		);
+		--background-dark: linear-gradient( 302.45deg, #000026 7.04%, rgba(0, 0, 38, .96) 50.78% );
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background: var(--background-dark);
+		color: white;
 		background-size: 224px;
 	}
 	code {
