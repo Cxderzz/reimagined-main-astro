@@ -114,7 +114,7 @@ const innovatePillar: Card = {
       <h3 class="pillars-title">
         Why choose <span class="accent">Reimagined?</span>
       </h3>
-        <ul role="list" class="flex gap-6">
+        <ul role="list" class="flex gap-6 pillars-list">
           <Pillar
             amount={contractPillar.amount}
             amountString={contractPillar.amountString}
@@ -598,6 +598,27 @@ main {
       position: static;
     }
   }
+  @media (min-width: 61rem) {
+    .pillars-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      gap: 10rem;
+      margin: 4rem 4rem 4rem 4rem;
+    }
+
+    .pillars-list > * {
+      max-width: 40ch;
+      scale: 1.1;
+    }
+    .pillars-title {
+      font-size: 3rem;
+      margin-top: 4rem;
+    }
+    .pillars {
+      padding-top: 0;
+    }
+  }
 </style>
 <script>
   const primaryNav = document.querySelector(".primary-navigation");
@@ -654,7 +675,8 @@ main {
       // header.style.backgroundImage = "";
       header.style.borderBottom = "";
       // create a transparent background image, not no background image
-      header.style.backgroundImage = "url('models/bg-image.png')";
+     header.style.backgroundImage = "url('models/bg-image.png')";
+    //  header.style.background = "var(--background-dark);"
       header.style.opacity = "0";
     } else {
       // yellow
